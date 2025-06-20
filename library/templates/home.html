@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Library{% endblock %}</title>
+</head>
+<body>
+    <h1>Welcome to library</h1>
+    <nav>
+        {% if not user.is_authenticated %}
+            <a href="{% url 'authentication:login' %}">Log in</a> |
+        {% endif %}
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'book:books_list' %}">Books📚</a> |
+            <a href="{% url 'order:orders-list' %}">Orders📦</a>  |
+            {% if user.is_superuser %}
+                <a href="{% url 'authentication:users-list' %}">Users</a> | |
+                <a href="{% url 'author:authors-list' %}">Authors</a> 
+            {% endif %}
+            <a href="{% url 'authentication:logout' %}" class="logout">Log out</a>
+        {% endif %}
+    </nav> 
+        {% if request.path == '/' %}
+            <p>
+                <img src="https://images.squarespace-cdn.com/content/v1/633df27af45a3748448599db/1711379914081-JO5IEEHV7FN5YXFQ5C2N/image-asset.jpeg" alt="library" width="800">
+            </p>
+        {% endif %}   
+    {% block content %}
+    <!-- Тут буде контент підсторінок -->
+    {% endblock %}
+</body>
+</html>

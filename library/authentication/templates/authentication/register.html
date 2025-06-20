@@ -1,0 +1,30 @@
+{% extends "home.html" %}
+
+{% block content %}
+<h1>Registration</h1>
+<form method="post" class="auth-input">
+  {% csrf_token %}
+  
+  {{ form.non_field_errors }}
+  
+  <input type="text" name="email" placeholder="Email" required value="{{ form.email.value|default_if_none:'' }}">
+  {{ form.email.errors }}
+
+  <input type="password" name="password1" placeholder="Password" required>
+  {{ form.password1.errors }}
+
+  <input type="password" name="password2" placeholder="Confirm password" required>
+  {{ form.password2.errors }}
+
+  <div>
+    {% for choice in form.role %}
+      <label>
+        {{ choice.tag }} {{ choice.choice_label }}
+      </label>
+    {% endfor %}
+    {{ form.role.errors }}
+  </div>
+
+  <button type="submit" class="butt">Register</button>
+</form>
+{% endblock %}

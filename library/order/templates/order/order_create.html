@@ -1,0 +1,32 @@
+<h1>New Order</h1>
+
+{% if error %}
+    <p style="color:red">{{ error }}</p>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    <label>Book:
+        <select name="book">
+            {% for book in books %}
+                <option value="{{ book.id }}">{{ book.title }}</option>
+            {% endfor %}
+        </select>
+    </label><br>
+
+    <label>User:
+        <select name="user">
+            {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+    </label><br>
+
+    <label>How many days:
+        <input name="days" type="number" min="1" max="30" value="14">
+    </label><br>
+
+    <button type="submit">Create</button>
+</form>
+
+<a href="{% url 'orders-list' %}">Back to orders</a>

@@ -1,0 +1,14 @@
+<h1>Authors List</h1>
+
+<a href="{% url 'author:author-create' %}">Add New Author</a>
+
+<ul>
+    {% for author in authors %}
+        <li>
+            {{ author.name }} {{ author.surname }} {{ author.patronymic }}
+            <a href="{% url 'author:author-delete' author.id %}">Delete</a>
+        </li>
+    {% empty %}
+        <li>No authors found.</li>
+    {% endfor %}
+</ul>

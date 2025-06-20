@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block title %}Library{% endblock %}</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; }
+    a { text-decoration: none; color: blue; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Library Management</h1>
+    <nav>
+      <a href="{% url 'author:authors-list' %}">Authors</a> |
+      <a href="{% url 'book:books_list' %}">Books</a> |
+      <a href="{% url 'order:orders-list' %}">Orders</a>
+    </nav>
+    <hr />
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <hr />
+    <p>© 2025 Library Project</p>
+  </footer>
+</body>
+</html>

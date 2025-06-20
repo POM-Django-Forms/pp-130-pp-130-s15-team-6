@@ -1,0 +1,15 @@
+{% extends "home.html" %}
+
+{% block content %}
+<h1>Registered Users</h1>
+<ul>
+    {% for user in users %}
+        <li>
+          {{ user.get_role_display }} - {{ user.email }}
+          | <a href="{% url 'book:books_for_user' user.id %}">Borrowed books</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<p><a href="/">← Back to home</a></p>
+{% endblock %}

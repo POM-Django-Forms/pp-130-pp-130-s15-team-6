@@ -1,0 +1,19 @@
+{% extends "home.html" %}
+<body>
+
+<div class="book-container">
+    <div class="book-image">
+        <img src="https://book-ye.com.ua/upload/resize_cache/iblock/fc9/700_1000_140cd750bba9870f18aada2478b24840a/fc933f7690ebf60b9f763a2eb0c1961c.jpg" alt="{{ book.name }}">
+    </div>
+
+    <div class="book-details">
+        <div class="book-title">{{ book.name }}</div>
+        <div class="book-author">Author: {{ book.author }}</div>
+        <div class="book-description">{{ book.description }}</div>
+        <div class="book-count">Count: {{ book.count }}</div>
+
+    </div>
+</div>
+
+</body>
+</html>

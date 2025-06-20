@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{% if form.instance.pk %}Edit Author{% else %}Add New Author{% endif %}</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">
+      {% if form.instance.pk %}Save Changes{% else %}Create Author{% endif %}
+    </button>
+  </form>
+
+  <a href="{% url 'author:author-list' %}">⬅ Back to list</a>
+{% endblock %}

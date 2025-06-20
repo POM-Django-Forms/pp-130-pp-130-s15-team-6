@@ -1,0 +1,23 @@
+
+{% extends "home.html" %}
+
+{% block title %}Books by Users{% endblock %}
+
+{% block content %}
+ <h2>All Borrowed Books by Users</h2>
+
+  {% for user in users %}
+    <h3>{{ user.get_full_name }} ({{ user.email }})</h3>
+    {% if user.order_set.all %}
+      <ul>
+        {% for order in user.order_set.all %}
+          <li>
+            {{ order.book.name }} — to be returned by: {{ order.plated_end_at|date:"d M Y" }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No books borrowed.</p>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

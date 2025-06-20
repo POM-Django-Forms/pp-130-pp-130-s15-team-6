@@ -1,0 +1,18 @@
+<h1>Orders</h1>
+<a href="{% url 'order:order-create' %}">Add Order</a>
+
+<ul>
+    {% for order in orders %}
+        <li>
+            User: {{ order.user.username }}, Book: {{ order.book.title }},
+            Plated End At: {{ order.plated_end_at }},
+            {% if order.end_at %}
+                Returned at: {{ order.end_at }}
+            {% else %}
+                <a href="{% url 'order-delete' order.id %}">Delete</a>
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>No orders</li>
+    {% endfor %}
+</ul>
